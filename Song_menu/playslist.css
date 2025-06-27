@@ -1,0 +1,63 @@
+body {
+    color: #ffffff;
+    background-color: #1E1E1E;
+    text-transform: capitalize;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 300;
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+svg{
+    cursor: pointer;
+    margin: 20px;
+}
+header{
+    min-height:20px;
+    max-height: 30px;
+    
+}
+
+h2{
+    font-weight: 300;
+    font-size: 25px;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+    color: #B1B1B1;
+    font-size: 25px;
+
+}
+
+.lista{
+    padding: 0;
+    margin-top: 98px;
+    
+}
+
+
+li{
+    list-style: none;
+    width: 100%;
+    border-top: 1px #b1b1b19d solid ;
+    transition: background-color 0.2s ease-in-out;
+}
+li:last-child{
+    border-bottom:1px #b1b1b19d solid ;
+}
+
+li:hover{
+    background-color: #ffffff16;
+}
+
+.playlist{
+    width: 80%;
+    margin: auto;
+}
+
+
+
+

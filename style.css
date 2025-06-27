@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&display=swap');
+
+body {
+    color: #ffffff;
+    background-color: #1E1E1E;
+    text-transform: uppercase;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 300;
+    font-style: normal;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f0f0f000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+body {
+    scrollbar-color: #888 #f0f0f0;
+    scrollbar-width: thin;
+}
+
+svg {
+    cursor: pointer;
+    margin: 20px;
+}
+
+header {
+    width: 80%;
+    text-align: left;
+    height: auto;
+    white-space: pre-line;
+    padding-left: 25px;
+    box-sizing: border-box;
+}
+
+header h1 {
+    cursor: pointer;
+    font-weight: 300;
+    margin: 0;
+    font-size: 40px;
+}
+
+h2 {
+    font-weight: 300;
+    font-size: 25px;
+    margin: 0;
+    cursor: default;
+}
+
+a {
+    text-decoration: none;
+    color: #B1B1B1;
+    font-size: 25px;
+}
+
+li {
+    list-style: none;
+    width: 100%;
+    border-top: 1px #b1b1b19d solid;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+li:last-child {
+    border-bottom: 1px #b1b1b19d solid;
+}
+
+li:hover {
+    background-color: #ffffff16;
+}
+
+.lista {
+    padding: 0;
+    margin-top: 98px;
+    margin-left: 25px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20vw;
+    height: 100vh;
+    overflow: hidden;
+    background: rgba(30, 30, 30, 0.95);
+    z-index: 0;
+}
+
+.fractal-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0.5;
+    filter: blur(0.3px);
+    mask: linear-gradient(to right, black 0%, black 60%, transparent 100%);
+    -webkit-mask: linear-gradient(to right, black 0%, black 60%, transparent 100%);
+}
+
+.container {
+    margin-left: 20vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    body {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: 40vh;
+        position: relative;
+    }
+    
+    .sidebar::after {
+        display: none;
+    }
+    
+    .fractal-canvas {
+        mask: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+        -webkit-mask: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+    }
+
+    .container {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+        margin-top: 0px;
+        min-height: 60vh;
+    }
+
+    .lista {
+        margin-left: 15px;
+        margin-right: 5px;
+    }
+
+    header {
+        padding-left: 15px;
+    }
+
+    header h1 {
+        font-size: 35px;
+    }
+}

@@ -1,0 +1,254 @@
+/* Enhanced visualizer_styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "IBM Plex Mono", serif;
+    font-weight: 300;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    color: #fff;
+    z-index: 10;
+}
+
+
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s ease-out, transform 0.3s ease-out;
+    user-select: none;
+    
+    transform: translateZ(0); /* GPU acceleration */
+}
+
+.container {
+    background-color: #ff0000;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    will-change: transform; /* Hint for browser to optimize */
+}
+
+/* Preview section - ENLARGED */
+.img_preview {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0); /* GPU acceleration */
+    width: 85%; /* Increased from 70% */
+    height: 85%; /* Increased from 75% */
+    overflow: hidden;
+    border-radius: 4px;
+
+}
+
+.img_preview img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0); /* GPU acceleration */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+    will-change: opacity, transform; /* Hint for browser optimization */
+    backface-visibility: hidden; /* Prevents flickering on some browsers */
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+/* Loading animation for preview image */
+.img_preview img.loading {
+    opacity: 0.5;
+    filter: blur(3px);
+    transition: opacity 0.3s ease-out, filter 0.3s ease-out;
+}
+
+/* Removed navigation controls and counter */
+
+/* Minimap */
+.minimap {
+    position: absolute;
+    top: auto;
+    right: 9em; /* Reduced from 8em to position closer to edge with larger preview */
+    width: 80px;
+    transform: translateY(-50%);
+    z-index: 5;
+    transform: scale(1.5); /* Slightly smaller for better fit */
+
+}
+
+.indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    border: 1px solid rgb(255, 255, 255);
+    z-index: 2;
+    will-change: transform; /* Hint for browser optimization */
+    backface-visibility: hidden; /* Prevents flickering */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+}
+
+.items {
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    will-change: transform; /* Critical for animation performance */
+    backface-visibility: hidden; /* Prevents flickering */
+    transform: translateZ(0); /* Force GPU rendering */
+    padding: 2px;
+}
+
+.item {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    cursor: pointer;
+    padding: 3px;
+    overflow: hidden; /* Prevents content spilling */
+    transform: translateZ(0); /* GPU acceleration */
+    border-radius: 2px;
+    transition: transform 0.2s ease-out;
+}
+
+.item:hover, .item:focus {
+    transform: scale(1.05);
+}
+
+.item:active {
+    transform: scale(0.95);
+}
+
+/* Focus states for keyboard navigation */
+.item:focus-visible {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+}
+
+/* Progress indicator style for loading */
+.item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background-color: #3498db;
+    transition: width 0.3s ease-out;
+}
+
+.item.loading::after {
+    width: 100%;
+}
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+.goBack{
+    cursor: pointer;
+    position: absolute;
+    margin: 20px;
+}
+
+/* Responsive mobile styles */
+@media (max-width: 900px) {
+    body {
+        overflow: hidden;
+        touch-action: none; /* Prevent default touch behaviors */
+    }
+    
+    .container {
+        touch-action: none;
+    }
+
+    .minimap {
+        top: auto;
+        right: 40%;
+        bottom: 5em; /* Moved up from 5em to make room for larger preview */
+        left: 50%;
+        width: auto;
+        height: 80px;
+        touch-action: none;
+        transform: translateX(-50%); /* Center horizontally */
+    }
+
+    .indicator {
+        top: 0;
+        left: 0;
+        width: 60px;
+        height: 100%;
+    }
+
+    .items {
+        flex-direction: row;
+        width: max-content;
+        height: 100%;
+        touch-action: none;
+    }
+
+    .item {
+        width: 60px;
+        height: 100%;
+        padding: 3px;
+    }
+
+    .img_preview {
+        top: 40%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0); /* GPU acceleration */
+        width: 75%; /* Increased from 85% */
+        height: 70%; /* Increased from 60% */
+    }
+
+
+
+    
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+    .container {
+        background-color: #1E1E1E;
+    }
+    
+}
+
+/* Animation for image transitions */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.img_preview img {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+}
+
+/* Accessibility focus indicators */
+button:focus-visible,
+.item:focus-visible {
+    outline: 2px solid #3498db;
+    outline-offset: 3px;
+}
