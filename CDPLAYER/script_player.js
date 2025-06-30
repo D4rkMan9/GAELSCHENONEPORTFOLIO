@@ -11,7 +11,7 @@ let params = new URLSearchParams(window.location.search);
 let songTitle = params.get("song");
 
 if (songTitle) {
-    song.src = `/CDPLAYER/dasong/${songTitle}`;
+    song.src = `/GAELSCHENONEPORTFOLIO/CDPLAYER/dasong/${songTitle}`;
     
 }
 
@@ -196,9 +196,9 @@ function volume_update() {
 function playSound(sfx) {
     let sound;
     if (sfx == "-") {
-        sound = new Audio("/CDPLAYER/dasong/select_001.ogg");
+        sound = new Audio("/GAELSCHENONEPORTFOLIO/CDPLAYER/dasong/select_001.ogg");
     } else if (sfx == "+") {
-        sound = new Audio("/CDPLAYER/dasong/select_002.ogg");
+        sound = new Audio("/GAELSCHENONEPORTFOLIO/CDPLAYER/dasong/select_002.ogg");
     }
     sound.volume = Math.min(song.volume, 1);
     sound.play();
