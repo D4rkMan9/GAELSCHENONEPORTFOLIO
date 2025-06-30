@@ -21,9 +21,21 @@
         img.alt = `Thumbnail ${i}`;
 
         img.addEventListener("click", () => {
-          previewImage.src = img.src;
-          previewImage.alt = img.alt;
+          const index = i - 1; // porque empezás desde 1
+          state.isClickMove = true;
+          state.isSnapping = false;
+        
+          const targetPosition = -index * state.dimensions.itemSize +
+            (state.dimensions.indicatorSize - state.dimensions.itemSize) / 2;
+        
+          state.targetTranslate = Math.max(
+            Math.min(targetPosition, 0),
+            -state.maxTranslate
+          );
+        
+          updatePreviewImage(index);
         });
+
 
         div.appendChild(img);
         document.querySelector(".items").appendChild(div);
@@ -34,6 +46,7 @@
       tempImg.onerror = function () {
         console.log(`No se encontró ${carpeta}_${i}.webp. Fin.`);
         // Cuando termina de cargar, iniciar la funcionalidad de scroll
+        updateDimensions();
         setTimeout(() => {
           initScrollVisualizer();
         }, 100);
@@ -108,6 +121,11 @@
 
     function getItemIndicator() {
       itemImages.forEach((img) => (img.style.opacity = 1));
+
+      itemImages.forEach((img, idx) => {
+        img.style.opacity = idx === index ? config.activeItemOpacity : 1;
+      });
+
 
       const indicatorStart = Math.abs(state.currentTranslate);
       const indicatorEnd = indicatorStart + state.dimensions.indicatorSize;
